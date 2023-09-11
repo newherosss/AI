@@ -21,7 +21,7 @@ def allowed_file(filename):
 @bp.route('/', methods=['GET', 'POST'])
 def hello_pybo():
 
-    abab = random.randint(1, 100)
+    abab = random.randint(1, 1000)
     print(abab)
     print(3)
     global n
@@ -31,9 +31,13 @@ def hello_pybo():
 
 
 
-@bp.route('/hello')
+@bp.route('/hello', methods=['GET', 'POST'])
 def index():
-    return redirect(url_for('question._list'))
+    if request.method == 'POST':
+        ddata = request.json
+        print("ddata : ", ddata)
+    return ddata
+    # return redirect(url_for('question._list'))
 
 @bp.route('/upload', methods=['GET', 'POST'])
 def upload_image():
