@@ -1,10 +1,9 @@
-from flask import Blueprint, url_for, jsonify
+from flask import Blueprint, url_for, jsonify, render_template
 from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
 
 import random
-# from flask import render_template
 
 n = 1
 
@@ -22,3 +21,8 @@ def hello_pybo():
 @bp.route('/hello')
 def index():
     return redirect(url_for('question._list'))
+
+@bp.route('/show', methods=['GET', 'POST'])
+def show():
+    imagine = 'one.png'
+    return render_template('question/show.html', img=imagine)
